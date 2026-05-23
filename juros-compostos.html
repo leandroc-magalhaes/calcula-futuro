@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Juros Compostos Online e Gratuita</title>
+  <meta name="description" content="Calcule juros compostos com aporte mensal, valor inicial, prazo e taxa de rendimento. Simulador gratuito para investimentos.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <h1>Calculadora de Juros Compostos</h1>
+      <p>Simule quanto seu dinheiro pode crescer ao longo do tempo.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="formulario">
+      <h2>Simule seu investimento</h2>
+
+      <div class="campo">
+        <label for="valorInicial">Valor inicial</label>
+        <input type="number" id="valorInicial" placeholder="Ex: 1000">
+      </div>
+
+      <div class="campo">
+        <label for="aporteMensal">Aporte mensal</label>
+        <input type="number" id="aporteMensal" placeholder="Ex: 300">
+      </div>
+
+      <div class="campo">
+        <label for="taxa">Taxa de rendimento mensal (%)</label>
+        <input type="number" id="taxa" step="0.01" placeholder="Ex: 0.8">
+      </div>
+
+      <div class="campo">
+        <label for="periodo">Período em meses</label>
+        <input type="number" id="periodo" placeholder="Ex: 120">
+      </div>
+
+      <button onclick="calcularJuros()">Calcular</button>
+
+      <div id="resultado" class="resultado" style="display:none;"></div>
+      <div id="tabela" class="tabela-container"></div>
+    </section>
+
+    <section class="conteudo">
+      <h2>O que são juros compostos?</h2>
+      <p>
+        Juros compostos são juros calculados sobre o valor inicial e também sobre os juros acumulados
+        ao longo do tempo. Por isso, eles são conhecidos como “juros sobre juros”.
+      </p>
+
+      <h2>Como usar a calculadora?</h2>
+      <p>
+        Informe o valor inicial, o aporte mensal, a taxa de rendimento mensal e o período desejado.
+        Depois clique em calcular para ver o valor final estimado.
+      </p>
+
+      <h2>Exemplo prático</h2>
+      <p>
+        Se você investir R$ 500 por mês durante vários anos, com uma taxa positiva de rendimento,
+        o valor acumulado pode crescer bastante com o passar do tempo.
+      </p>
+
+      <h2>Atenção</h2>
+      <p>
+        Esta calculadora é apenas uma simulação educativa. Ela não representa recomendação de investimento
+        nem garantia de rendimento futuro.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>
+        <a href="index.html">Início</a> |
+        <a href="sobre.html">Sobre</a> |
+        <a href="privacidade.html">Privacidade</a> |
+        <a href="contato.html">Contato</a>
+      </p>
+      <p>© 2026 Calcula Futuro</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
