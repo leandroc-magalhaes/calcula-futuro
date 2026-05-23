@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Calculadora de Juros Compostos Online e Gratuita</title>
-  <meta name="description" content="Calcule juros compostos com aporte mensal, valor inicial, prazo e taxa de rendimento. Simulador gratuito para investimentos.">
+
+  <meta name="description" content="Calcule juros compostos online com valor inicial, aporte mensal, taxa mensal ou anual e prazo em meses ou anos. Simulador gratuito de investimentos.">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +15,7 @@
   <header class="topo">
     <div class="container">
       <h1>Calculadora de Juros Compostos</h1>
-      <p>Simule quanto seu dinheiro pode crescer ao longo do tempo.</p>
+      <p>Simule investimentos com aportes mensais e veja quanto seu dinheiro pode crescer.</p>
     </div>
   </header>
 
@@ -23,22 +26,38 @@
 
       <div class="campo">
         <label for="valorInicial">Valor inicial</label>
-        <input type="number" id="valorInicial" placeholder="Ex: 1000">
+        <input type="number" id="valorInicial" placeholder="Ex: 1000" min="0" step="0.01">
       </div>
 
       <div class="campo">
         <label for="aporteMensal">Aporte mensal</label>
-        <input type="number" id="aporteMensal" placeholder="Ex: 300">
+        <input type="number" id="aporteMensal" placeholder="Ex: 300" min="0" step="0.01">
       </div>
 
       <div class="campo">
-        <label for="taxa">Taxa de rendimento mensal (%)</label>
-        <input type="number" id="taxa" step="0.01" placeholder="Ex: 0.8">
+        <label for="taxa">Taxa de rendimento</label>
+        <input type="number" id="taxa" step="0.01" placeholder="Ex: 0.8" min="0">
       </div>
 
       <div class="campo">
-        <label for="periodo">Período em meses</label>
-        <input type="number" id="periodo" placeholder="Ex: 120">
+        <label for="tipoTaxa">Tipo da taxa</label>
+        <select id="tipoTaxa">
+          <option value="mensal">Mensal</option>
+          <option value="anual">Anual</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="periodo">Período</label>
+        <input type="number" id="periodo" placeholder="Ex: 10" min="1">
+      </div>
+
+      <div class="campo">
+        <label for="tipoPeriodo">Tipo do período</label>
+        <select id="tipoPeriodo">
+          <option value="anos">Anos</option>
+          <option value="meses">Meses</option>
+        </select>
       </div>
 
       <button onclick="calcularJuros()">Calcular</button>
@@ -49,27 +68,102 @@
 
     <section class="conteudo">
       <h2>O que são juros compostos?</h2>
+
       <p>
         Juros compostos são juros calculados sobre o valor inicial e também sobre os juros acumulados
         ao longo do tempo. Por isso, eles são conhecidos como “juros sobre juros”.
       </p>
 
-      <h2>Como usar a calculadora?</h2>
       <p>
-        Informe o valor inicial, o aporte mensal, a taxa de rendimento mensal e o período desejado.
-        Depois clique em calcular para ver o valor final estimado.
+        Na prática, isso significa que o dinheiro pode crescer de forma mais acelerada conforme o tempo passa,
+        principalmente quando há aportes mensais e reinvestimento dos rendimentos.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Como usar a calculadora de juros compostos?</h2>
+
+      <p>Para fazer sua simulação, preencha os campos da seguinte forma:</p>
+
+      <ul>
+        <li><strong>Valor inicial:</strong> quanto você já tem para começar;</li>
+        <li><strong>Aporte mensal:</strong> quanto pretende investir todos os meses;</li>
+        <li><strong>Taxa de rendimento:</strong> rendimento esperado no período;</li>
+        <li><strong>Tipo da taxa:</strong> escolha se a taxa é mensal ou anual;</li>
+        <li><strong>Período:</strong> informe por quanto tempo pretende investir;</li>
+        <li><strong>Tipo do período:</strong> escolha se o prazo está em meses ou anos.</li>
+      </ul>
+    </section>
+
+    <section class="conteudo">
+      <h2>Exemplo de juros compostos</h2>
+
+      <p>
+        Imagine que uma pessoa comece com R$ 1.000, invista R$ 300 por mês e tenha rendimento médio
+        de 0,8% ao mês durante 10 anos. Com o passar do tempo, os juros acumulados passam a representar
+        uma parte cada vez maior do valor final.
       </p>
 
-      <h2>Exemplo prático</h2>
       <p>
-        Se você investir R$ 500 por mês durante vários anos, com uma taxa positiva de rendimento,
-        o valor acumulado pode crescer bastante com o passar do tempo.
+        A calculadora ajuda a visualizar esse crescimento, mostrando o total investido, o valor estimado
+        acumulado e quanto veio dos juros.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Fórmula dos juros compostos</h2>
+
+      <p>A fórmula básica dos juros compostos é:</p>
+
+      <p><strong>M = C × (1 + i)<sup>t</sup></strong></p>
+
+      <ul>
+        <li><strong>M:</strong> montante final;</li>
+        <li><strong>C:</strong> capital inicial;</li>
+        <li><strong>i:</strong> taxa de juros;</li>
+        <li><strong>t:</strong> tempo da aplicação.</li>
+      </ul>
+
+      <p>
+        Quando existem aportes mensais, o cálculo considera também os depósitos feitos ao longo do período.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Perguntas frequentes</h2>
+
+      <h3>Juros compostos são bons para investimentos?</h3>
+      <p>
+        Sim. Em investimentos, os juros compostos podem ajudar o patrimônio a crescer ao longo do tempo,
+        principalmente quando os rendimentos são reinvestidos.
       </p>
 
-      <h2>Atenção</h2>
+      <h3>Qual é a diferença entre taxa mensal e taxa anual?</h3>
       <p>
-        Esta calculadora é apenas uma simulação educativa. Ela não representa recomendação de investimento
-        nem garantia de rendimento futuro.
+        A taxa mensal representa o rendimento de cada mês. A taxa anual representa o rendimento acumulado
+        ao longo de um ano. Nesta calculadora, quando você escolhe taxa anual, ela é convertida para uma
+        taxa mensal equivalente.
+      </p>
+
+      <h3>O resultado é garantido?</h3>
+      <p>
+        Não. Esta calculadora apresenta apenas uma simulação matemática. Rentabilidades reais podem variar
+        conforme o tipo de investimento, impostos, taxas, inflação e condições de mercado.
+      </p>
+
+      <h3>Posso usar esta calculadora para qualquer investimento?</h3>
+      <p>
+        Ela pode ser usada para simulações gerais, mas não substitui uma análise financeira completa.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Aviso importante</h2>
+
+      <p>
+        Esta ferramenta possui finalidade educativa. Os resultados apresentados são estimativas e não
+        representam recomendação de investimento, consultoria financeira, promessa de rentabilidade ou
+        garantia de resultado futuro.
       </p>
     </section>
 
