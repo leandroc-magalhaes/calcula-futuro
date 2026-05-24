@@ -118,3 +118,106 @@ function calcularJuros() {
     </table>
   `;
 }
+
+function calcularReserva() {
+  const gastoMensal = parseFloat(document.getElementById('gastoMensal').value) || 0;
+  const mesesReserva = parseInt(document.getElementById('mesesReserva').value) || 0;
+  const valorGuardado = parseFloat(document.getElementById('valorGuardado').value) || 0;
+  const aporteReserva = parseFloat(document.getElementById('aporteReserva').value) || 0;
+
+  if (gastoMensal <= 0) {
+    alert('Informe um gasto mensal válido.');
+    return;
+  }
+
+  if (mesesReserva <= 0) {
+    alert('Informe a quantidade de meses desejada para sua reserva.');
+    return;
+  }
+
+  if (valorGuardado < 0) {
+    alert('O valor já guardado não pode ser negativo.');
+    return;
+  }
+
+  if (aporteReserva < 0) {
+    alert('O aporte mensal não pode ser negativo.');
+    return;
+  }
+
+  const reservaIdeal = gastoMensal * mesesReserva;
+  const faltaGuardar = reservaIdeal - valorGuardado;
+  const percentualAtual = reservaIdeal > 0 ? (valorGuardado / reservaIdeal) * 100 : 0;
+
+  let mensagemTempo = '';
+
+  if (faltaGuardar <= 0) {
+    mensagemTempo = `
+      <p>
+        Parabéns! Com o valor informado, você já atingiu ou ultrapassou a reserva de emergência estimada.
+      </p>
+    `;
+  } else if (aporteReserva > 0) {
+    const mesesParaCompletar = Math.ceil(faltaGuardar / aporteReserva);
+    const anosParaCompletar = Math.floor(mesesParaCompletar / 12);
+    const mesesRestantes = mesesParaCompletar % 12;
+
+    let textoTempo = '';
+
+    if (anosParaCompletar > 0 && mesesRestantes > 0) {
+      textoTempo = `${anosParaCompletar} ano(s) e ${mesesRestantes} mês(es)`;
+    } else if (anosParaCompletar > 0) {
+      textoTempo = `${anosParaCompletar} ano(s)`;
+    } else {
+      textoTempo = `${mesesParaCompletar} mês(es)`;
+    }
+
+    mensagemTempo = `
+      <p>
+        Guardando ${formatarMoeda(aporteReserva)} por mês, você levaria aproximadamente
+        <strong>${textoTempo}</strong> para completar sua reserva.
+      </p>
+    `;
+  } else {
+    mensagemTempo = `
+      <p>
+        Para estimar o tempo necessário para completar sua reserva, informe quanto pretende guardar por mês.
+      </p>
+    `;
+  }
+
+  let classificacao = '';
+
+  if (percentualAtual >= 100) {
+    classificacao = 'Reserva completa';
+  } else if (percentualAtual >= 75) {
+    classificacao = 'Quase completa';
+  } else if (percentualAtual >= 50) {
+    classificacao = 'Em bom andamento';
+  } else if (percentualAtual >= 25) {
+    classificacao = 'Em construção';
+  } else {
+    classificacao = 'Início da construção';
+  }
+
+  const resultadoReserva = document.getElementById('resultadoReserva');
+  resultadoReserva.style.display = 'block';
+
+  resultadoReserva.innerHTML = `
+    <h2>Resultado da reserva de emergência</h2>
+
+    <p><strong>Reserva ideal:</strong> ${formatarMoeda(reservaIdeal)}</p>
+    <p><strong>Valor já guardado:</strong> ${formatarMoeda(valorGuardado)}</p>
+    <p><strong>Quanto falta guardar:</strong> ${formatarMoeda(Math.max(faltaGuardar, 0))}</p>
+    <p><strong>Progresso atual:</strong> ${formatarPercentual(Math.min(percentualAtual, 100))}</p>
+    <p><strong>Situação:</strong> ${classificacao}</p>
+
+    <p>
+      Considerando um gasto mensal de ${formatarMoeda(gastoMensal)} e uma proteção desejada de
+      ${mesesReserva} mês(es), sua reserva de emergência ideal seria de aproximadamente
+      <strong>${formatarMoeda(reservaIdeal)}</strong>.
+    </p>
+
+    ${mensagemTempo}
+  `;
+}
