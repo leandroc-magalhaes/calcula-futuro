@@ -33,6 +33,29 @@ body {
   margin: 0;
 }
 
+.menu {
+  margin-top: 25px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .menu a {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
 .hero {
   background: white;
   margin-top: 30px;
