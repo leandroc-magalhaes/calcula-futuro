@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculadora de Reserva de Emergência Online e Gratuita</title>
+
+  <meta name="description" content="Calcule sua reserva de emergência ideal com base no seu gasto mensal, quantidade de meses desejada e valor já guardado.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <h1>Calculadora de Reserva de Emergência</h1>
+      <p>Descubra quanto você precisa guardar para ter mais segurança financeira.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="formulario">
+      <h2>Calcule sua reserva ideal</h2>
+
+      <div class="campo">
+        <label for="gastoMensal">Gasto mensal</label>
+        <input type="number" id="gastoMensal" placeholder="Ex: 2500" min="0" step="0.01">
+      </div>
+
+      <div class="campo">
+        <label for="mesesReserva">Meses de reserva desejados</label>
+        <input type="number" id="mesesReserva" placeholder="Ex: 6" min="1">
+      </div>
+
+      <div class="campo">
+        <label for="valorGuardado">Valor já guardado</label>
+        <input type="number" id="valorGuardado" placeholder="Ex: 3000" min="0" step="0.01">
+      </div>
+
+      <div class="campo">
+        <label for="aporteReserva">Quanto pretende guardar por mês</label>
+        <input type="number" id="aporteReserva" placeholder="Ex: 500" min="0" step="0.01">
+      </div>
+
+      <button onclick="calcularReserva()">Calcular reserva</button>
+
+      <div id="resultadoReserva" class="resultado" style="display:none;"></div>
+    </section>
+
+    <section class="conteudo">
+      <h2>O que é reserva de emergência?</h2>
+
+      <p>
+        Reserva de emergência é um dinheiro separado para lidar com imprevistos, como perda de renda,
+        problemas de saúde, consertos urgentes ou outras despesas inesperadas.
+      </p>
+
+      <p>
+        Ela ajuda a evitar dívidas e dá mais tranquilidade para tomar decisões financeiras.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Quanto devo ter de reserva de emergência?</h2>
+
+      <p>
+        Uma recomendação comum é ter entre 3 e 12 meses dos seus gastos mensais guardados.
+        Pessoas com renda mais estável podem considerar uma reserva menor, enquanto pessoas com renda variável
+        podem precisar de uma reserva maior.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Como usar esta calculadora?</h2>
+
+      <ul>
+        <li><strong>Gasto mensal:</strong> informe quanto você gasta por mês;</li>
+        <li><strong>Meses de reserva:</strong> informe por quantos meses deseja se proteger;</li>
+        <li><strong>Valor já guardado:</strong> informe quanto você já tem separado;</li>
+        <li><strong>Aporte mensal:</strong> informe quanto pretende guardar por mês.</li>
+      </ul>
+    </section>
+
+    <section class="conteudo">
+      <h2>Aviso importante</h2>
+
+      <p>
+        Esta calculadora possui finalidade educativa. O resultado é uma estimativa simples e não representa
+        consultoria financeira individual.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>
+        <a href="index.html">Início</a> |
+        <a href="juros-compostos.html">Juros Compostos</a> |
+        <a href="sobre.html">Sobre</a> |
+        <a href="privacidade.html">Privacidade</a>
+      </p>
+      <p>© 2026 Calcula Futuro</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
