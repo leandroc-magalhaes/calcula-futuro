@@ -221,3 +221,128 @@ function calcularReserva() {
     ${mensagemTempo}
   `;
 }
+
+function calcularViverRenda() {
+  const rendaDesejada = parseFloat(document.getElementById('rendaDesejada').value) || 0;
+  const taxaRenda = parseFloat(document.getElementById('taxaRenda').value) || 0;
+  const valorInvestidoRenda = parseFloat(document.getElementById('valorInvestidoRenda').value) || 0;
+  const aporteMensalRenda = parseFloat(document.getElementById('aporteMensalRenda').value) || 0;
+
+  if (rendaDesejada <= 0) {
+    alert('Informe uma renda mensal desejada válida.');
+    return;
+  }
+
+  if (taxaRenda <= 0) {
+    alert('Informe uma taxa de rendimento mensal maior que zero.');
+    return;
+  }
+
+  if (valorInvestidoRenda < 0) {
+    alert('O valor já investido não pode ser negativo.');
+    return;
+  }
+
+  if (aporteMensalRenda < 0) {
+    alert('O aporte mensal não pode ser negativo.');
+    return;
+  }
+
+  const taxaDecimal = taxaRenda / 100;
+  const patrimonioNecessario = rendaDesejada / taxaDecimal;
+  const faltaAcumular = patrimonioNecessario - valorInvestidoRenda;
+  const rendaAtualEstimada = valorInvestidoRenda * taxaDecimal;
+  const percentualMeta = patrimonioNecessario > 0 ? (valorInvestidoRenda / patrimonioNecessario) * 100 : 0;
+
+  let mensagemTempo = '';
+
+  if (faltaAcumular <= 0) {
+    mensagemTempo = `
+      <p>
+        Parabéns! Com os valores informados, você já teria patrimônio suficiente para gerar
+        a renda mensal desejada, considerando a taxa estimada.
+      </p>
+    `;
+  } else if (aporteMensalRenda > 0) {
+    let saldo = valorInvestidoRenda;
+    let meses = 0;
+    const limiteMeses = 1200;
+
+    while (saldo < patrimonioNecessario && meses < limiteMeses) {
+      saldo = saldo * (1 + taxaDecimal);
+      saldo = saldo + aporteMensalRenda;
+      meses++;
+    }
+
+    if (meses >= limiteMeses) {
+      mensagemTempo = `
+        <p>
+          Com o aporte informado, o tempo estimado ficou muito longo. Considere aumentar o aporte mensal,
+          reduzir a renda desejada ou revisar a taxa de rendimento utilizada.
+        </p>
+      `;
+    } else {
+      const anos = Math.floor(meses / 12);
+      const mesesRestantes = meses % 12;
+
+      let textoTempo = '';
+
+      if (anos > 0 && mesesRestantes > 0) {
+        textoTempo = `${anos} ano(s) e ${mesesRestantes} mês(es)`;
+      } else if (anos > 0) {
+        textoTempo = `${anos} ano(s)`;
+      } else {
+        textoTempo = `${meses} mês(es)`;
+      }
+
+      mensagemTempo = `
+        <p>
+          Investindo ${formatarMoeda(aporteMensalRenda)} por mês, o tempo aproximado para atingir
+          esse patrimônio seria de <strong>${textoTempo}</strong>, considerando a taxa informada.
+        </p>
+      `;
+    }
+  } else {
+    mensagemTempo = `
+      <p>
+        Para estimar o tempo necessário para alcançar esse patrimônio, informe quanto pretende investir por mês.
+      </p>
+    `;
+  }
+
+  let classificacao = '';
+
+  if (percentualMeta >= 100) {
+    classificacao = 'Meta alcançada';
+  } else if (percentualMeta >= 75) {
+    classificacao = 'Muito próximo da meta';
+  } else if (percentualMeta >= 50) {
+    classificacao = 'Mais da metade do caminho';
+  } else if (percentualMeta >= 25) {
+    classificacao = 'Meta em construção';
+  } else {
+    classificacao = 'Início da jornada';
+  }
+
+  const resultadoViverRenda = document.getElementById('resultadoViverRenda');
+  resultadoViverRenda.style.display = 'block';
+
+  resultadoViverRenda.innerHTML = `
+    <h2>Resultado da simulação</h2>
+
+    <p><strong>Patrimônio necessário:</strong> ${formatarMoeda(patrimonioNecessario)}</p>
+    <p><strong>Valor já investido:</strong> ${formatarMoeda(valorInvestidoRenda)}</p>
+    <p><strong>Quanto falta acumular:</strong> ${formatarMoeda(Math.max(faltaAcumular, 0))}</p>
+    <p><strong>Renda atual estimada:</strong> ${formatarMoeda(rendaAtualEstimada)} por mês</p>
+    <p><strong>Progresso da meta:</strong> ${formatarPercentual(Math.min(percentualMeta, 100))}</p>
+    <p><strong>Situação:</strong> ${classificacao}</p>
+
+    <p>
+      Para gerar uma renda mensal estimada de ${formatarMoeda(rendaDesejada)}, considerando uma taxa
+      de rendimento mensal de ${formatarPercentual(taxaRenda)}, seria necessário acumular aproximadamente
+      <strong>${formatarMoeda(patrimonioNecessario)}</strong>.
+    </p>
+
+    ${mensagemTempo}
+  `;
+}
