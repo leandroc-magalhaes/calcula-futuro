@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculadora para Viver de Renda Online e Gratuita</title>
+
+  <meta name="description" content="Calcule quanto patrimônio você precisa acumular para viver de renda com base na renda mensal desejada e na taxa de rendimento estimada.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <h1>Calculadora para Viver de Renda</h1>
+      <p>Descubra quanto patrimônio seria necessário para gerar uma renda mensal.</p>
+
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="juros-compostos.html">Juros Compostos</a>
+        <a href="reserva-emergencia.html">Reserva de Emergência</a>
+        <a href="viver-de-renda.html">Viver de Renda</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="privacidade.html">Privacidade</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="formulario">
+      <h2>Simule sua renda mensal</h2>
+
+      <div class="campo">
+        <label for="rendaDesejada">Renda mensal desejada</label>
+        <input type="number" id="rendaDesejada" placeholder="Ex: 3000" min="0" step="0.01">
+      </div>
+
+      <div class="campo">
+        <label for="taxaRenda">Taxa de rendimento mensal esperada (%)</label>
+        <input type="number" id="taxaRenda" placeholder="Ex: 0.8" min="0" step="0.01">
+      </div>
+
+      <div class="campo">
+        <label for="valorInvestidoRenda">Valor já investido</label>
+        <input type="number" id="valorInvestidoRenda" placeholder="Ex: 10000" min="0" step="0.01">
+      </div>
+
+      <div class="campo">
+        <label for="aporteMensalRenda">Quanto pretende investir por mês</label>
+        <input type="number" id="aporteMensalRenda" placeholder="Ex: 500" min="0" step="0.01">
+      </div>
+
+      <button onclick="calcularViverRenda()">Calcular</button>
+
+      <div id="resultadoViverRenda" class="resultado" style="display:none;"></div>
+    </section>
+
+    <section class="conteudo">
+      <h2>O que significa viver de renda?</h2>
+
+      <p>
+        Viver de renda significa ter um patrimônio capaz de gerar rendimentos suficientes para pagar
+        suas despesas mensais, sem depender exclusivamente do trabalho ativo.
+      </p>
+
+      <p>
+        Na prática, a pessoa acumula investimentos e utiliza os rendimentos para complementar ou substituir
+        sua renda mensal.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Como funciona esta calculadora?</h2>
+
+      <p>
+        Esta calculadora estima o patrimônio necessário para gerar uma renda mensal com base na taxa
+        de rendimento informada.
+      </p>
+
+      <p>
+        Por exemplo, se você deseja receber R$ 3.000 por mês e estima um rendimento de 0,8% ao mês,
+        a calculadora divide a renda desejada pela taxa mensal para estimar o patrimônio necessário.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Como usar a calculadora?</h2>
+
+      <ul>
+        <li><strong>Renda mensal desejada:</strong> informe quanto gostaria de receber por mês;</li>
+        <li><strong>Taxa de rendimento mensal:</strong> informe uma taxa estimada de rendimento;</li>
+        <li><strong>Valor já investido:</strong> informe quanto você já possui investido;</li>
+        <li><strong>Aporte mensal:</strong> informe quanto pretende investir todos os meses.</li>
+      </ul>
+    </section>
+
+    <section class="conteudo">
+      <h2>Exemplo prático</h2>
+
+      <p>
+        Se uma pessoa deseja receber R$ 4.000 por mês e considera uma taxa estimada de 0,8% ao mês,
+        o patrimônio aproximado necessário seria de R$ 500.000.
+      </p>
+
+      <p>
+        Esse cálculo é uma simplificação e não considera impostos, inflação, variação dos investimentos,
+        taxas administrativas ou mudanças na rentabilidade ao longo do tempo.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Perguntas frequentes</h2>
+
+      <h3>O resultado é garantido?</h3>
+      <p>
+        Não. O resultado é apenas uma estimativa matemática. Investimentos reais podem variar e não há
+        garantia de rendimento futuro.
+      </p>
+
+      <h3>Qual taxa devo usar?</h3>
+      <p>
+        A taxa depende do tipo de investimento considerado. Para uma simulação conservadora, muitas pessoas
+        preferem usar taxas menores.
+      </p>
+
+      <h3>A calculadora considera inflação?</h3>
+      <p>
+        Não. Esta versão faz uma simulação simples e não desconta inflação, impostos ou taxas.
+      </p>
+
+      <h3>Posso usar para planejar independência financeira?</h3>
+      <p>
+        Sim, a calculadora pode ajudar em uma primeira estimativa, mas não substitui um planejamento financeiro
+        completo.
+      </p>
+    </section>
+
+    <section class="conteudo">
+      <h2>Aviso importante</h2>
+
+      <p>
+        Esta ferramenta possui finalidade educativa. Os resultados são estimativas e não representam
+        recomendação de investimento, consultoria financeira, promessa de rentabilidade ou garantia
+        de resultado futuro.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>© 2026 Calcula Futuro</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
